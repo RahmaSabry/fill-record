@@ -1,6 +1,6 @@
 <?php
 namespace Rahmasa\FillRecord;
-
+use Request;
 
 trait FillRecord
 {
@@ -8,12 +8,12 @@ trait FillRecord
 	{
 		static::creating(function ($model) {
 			$model->created_by_user = auth()->user()->id;
-			$model->created_by_ip = \Request::ip();
+			$model->created_by_ip = Request::ip();
 		});
 		
 		static::updating(function ($model) {
 			$model->updated_by_user = auth()->user()->id;
-			$model->updated_by_ip = \Request::ip();
+			$model->updated_by_ip = Request::ip();
 		});
 	}
 
